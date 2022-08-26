@@ -75,7 +75,7 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
                     msg: '登录成功',
                     status: 200
                 },
-                user: {
+                data: {
                     username: userList.data.userinfo[i].username,
                     roles: userList.data.userinfo[i].roles,
                     password: userList.data.userinfo[i].password,

@@ -38,16 +38,18 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+
   const uInfo = store.state.userInfo
-  if (!uInfo.username) {
+  if (uInfo.username) {
+    next()
+  }
+  else {
     if (to.path === "/login") {
       next()
       return
     }
     next("/login")
-  }
-  else {
-    next()
+
   }
 
   //判断用户是否登录

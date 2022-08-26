@@ -4,10 +4,13 @@
     </div>
 </template>
 <script>
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
 
 import * as echarts from "echarts";
 import { getcomeinData } from '@/until/api'
+
+
+
 
 
 
@@ -25,11 +28,9 @@ export default {
 
         })
 
-
-
-
         onMounted(() => {
             getdata()
+
         })
 
         const getdata = () => {
@@ -53,7 +54,8 @@ export default {
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    // data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    data: data.month,
                     axisLabel: {
                         formatter: '{value} '
                     }
@@ -87,14 +89,24 @@ export default {
         }
 
         getcomeinData().then(res => {
-            // console.log(res.data);
+            data.value.month = res.data
+
+            res.data.map(item => {
+                return data.value.month.push(item.month)
+            })
 
         })
+        console.log(data.value.month);
+
+
+
+
+
 
 
 
         return {
-
+            data,
             getdata,
             content
         }

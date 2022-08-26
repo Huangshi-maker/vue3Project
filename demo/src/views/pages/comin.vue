@@ -10,7 +10,7 @@
         <el-input v-model="search" size="small" placeholder="输入开始模糊搜索" width="200px"/>
       </template>
       <template #default="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+        <el-button size="small" @click="handleEdit(scope.row)"
           >编辑</el-button
         >
         <el-button
@@ -22,6 +22,31 @@
       </template>
     </el-table-column>
   </el-table>
+
+  <el-dialog v-model="dialogFormVisible" title="编辑">
+    <el-form :model="form" ref="userform">
+      <el-form-item label="月份" prop="month" >
+        <el-input v-model="form.month" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="入境人数" prop="entrynums">
+        <el-input v-model="form.entrynums" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="出境人数" prop="exitnums" >
+        <el-input v-model="form.exitnums" autocomplete="off" />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >确认</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
+
+
+
     </div>
 </template>
 <script>
@@ -31,14 +56,29 @@ import { getcomeinData } from '@/until/api';
 export default {
   setup() {
 
-
+    const userform = ref(null)
     const search = ref('')
     const tableData = ref([])
+    const form = ref({
+      month: '',
+      entrynums: '',
+      exitnums: ''
 
 
-    const handleEdit = (index, row) => {
-      console.log(index, row);
+
+    })
+    const dialogFormVisible = ref(false)
+
+
+    const handleEdit = (row) => {
+      dialogFormVisible.value = true
+      console.log(row.month);
+      form.value.month = row.month
+      form.value.entrynums = row.entrynums
+      form.value.exitnums = row.exitnums
     }
+
+
     const handleDelete = (scope) => {
       console.log(scope);
     }
@@ -67,7 +107,10 @@ export default {
       search,
       handleEdit,
       handleDelete,
-      filterTableData
+      filterTableData,
+      dialogFormVisible,
+      form,
+      userform
 
     }
   }

@@ -50,15 +50,11 @@ export default {
     }
     const handleLogin = (ruleFormRef) => {
       loginApi(loginForm.value).then((res) => {
-        console.log(res);
-
-
 
         if (res.meta.status == 200) {
 
-          console.log(res.user);
-          store.commit('setUserinfo',res.user)
-          localStorage.setItem("loginData", JSON.stringify( res.user))
+          store.commit('setUserinfo', res.data)
+          localStorage.setItem("loginData", JSON.stringify(res.data))
 
           router.push('/index')
 

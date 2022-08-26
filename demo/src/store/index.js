@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    userInfo: (localStorage.getItem("loginData") ) || {}
+    userInfo: (localStorage.getItem("loginData")) && JSON.parse(localStorage.getItem("loginData")) || {}
   },
 
   getters: {

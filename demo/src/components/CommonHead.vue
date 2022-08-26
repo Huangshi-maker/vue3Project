@@ -28,11 +28,12 @@ export default {
     setup() {
         const router = useRouter()
         const handleLogout = () => {
+            localStorage.removeItem("loginData")
+            store.commit("setUserinfo", {})
             router.push('/login')
         }
         const handleToPersonel = () => {
-            localStorage.removeItem("loginData")
-            store.commit("setUserInfo", {})
+
             router.push('/usercenter')
         }
         const store = useStore()
