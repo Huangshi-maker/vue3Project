@@ -83,7 +83,7 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
                     age: userList.data.userinfo[i].age,
                     job: userList.data.userinfo[i].job,
                     token: userList.data.userinfo[i].token,
-                    di: userList.data.userinfo[i].id,
+                    id: userList.data.userinfo[i].id,
                 }
             }
         }

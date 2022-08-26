@@ -2,12 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    userInfo: {
-      username: '',
-      password: '',
-      name: '',
-
-    }
+    userInfo: (localStorage.getItem("loginData") ) || {}
   },
 
   getters: {

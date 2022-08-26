@@ -36,11 +36,11 @@
                         <div class="container">
                             <div>
                                 <el-icon><Notebook /></el-icon>
-                                <span>生死溥</span>
+                                <span>大事溥</span>
                             </div>
                             <div>
                                 <el-icon><Search /></el-icon>
-                                <span>查询寿命</span>
+                                <span>人员查询</span>
                             </div>
                             <div>
                                 <el-icon><EditPen /></el-icon>
@@ -48,7 +48,7 @@
                             </div>
                             <div>
                                 <el-icon><Refresh /></el-icon>
-                                <span>重新投胎</span>
+                                <span>数据重置</span>
                             </div>
                             <div>
                                 <el-icon><Setting /></el-icon>
@@ -60,11 +60,11 @@
                             </div>
                             <div>
                                 <el-icon><CloseBold /></el-icon>
-                                <span>十八地狱</span>
+                                <span>分层管理</span>
                             </div>
                             <div>
                                 <el-icon><Select /></el-icon>
-                                <span>发勾魂单</span>
+                                <span>消息通知</span>
                             </div>
                             <div>
                                 <el-icon><HelpFilled /></el-icon>
@@ -80,7 +80,7 @@
                             </div>
                             <div>
                                 <el-icon><Flag /></el-icon>
-                                <span>百鬼夜行</span>
+                                <span>目标设置</span>
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@
                 <el-card style="margin-top:20px">
                     <div style="height:270px;">
                         <div class="title">
-                            <span>地府出入境人数</span>
+                            <span>出入境人数</span>
                             <el-icon class="card-icon"><MoreFilled /></el-icon>
                         </div>
                         <mousecharts/>
@@ -119,7 +119,7 @@
                     <el-card style="margin-top:20px">
                         <div style="height:270px;">
                             <div class="title">
-                                <span>各层地狱人数</span>
+                                <span>各层人数</span>
                                 <el-icon class="card-icon"><MoreFilled /></el-icon>
                             </div>
                             <fanChart/>

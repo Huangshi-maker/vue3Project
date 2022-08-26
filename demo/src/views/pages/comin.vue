@@ -29,48 +29,48 @@ import { ref, computed, } from 'vue';
 import { getcomeinData } from '@/until/api';
 
 export default {
-    setup() {
+  setup() {
 
 
-        const search = ref('')
-        const tableData = ref([])
+    const search = ref('')
+    const tableData = ref([])
 
 
-        const handleEdit = (index, row) => {
-            console.log(index, row);
-        }
-        const handleDelete = (scope) => {
-            console.log(scope);
-        }
-        const filterTableData = computed(() =>
-            tableData.value.filter(
-                (data) =>
-                    !search.value ||
-                    data.name.toLowerCase().includes(search.value.toLowerCase())
-            )
-        )
-        getcomeinData().then(res => {
-            if (res.meta.status === 200) {
-                ElMessage({
-                    message: '数据获取成功',
-                    type: 'success',
-                })
-                tableData.value = res.data
-            }
-            console.log(res);
-        })
-
-
-
-        return {
-            tableData,
-            search,
-            handleEdit,
-            handleDelete,
-            filterTableData
-
-        }
+    const handleEdit = (index, row) => {
+      console.log(index, row);
     }
+    const handleDelete = (scope) => {
+      console.log(scope);
+    }
+    const filterTableData = computed(() =>
+      tableData.value.filter(
+        (data) =>
+          !search.value ||
+          data.month.toLowerCase().includes(search.value.toLowerCase())
+      )
+    )
+    getcomeinData().then(res => {
+      if (res.meta.status === 200) {
+        ElMessage({
+          message: '数据获取成功',
+          type: 'success',
+        })
+        tableData.value = res.data
+      }
+      console.log(res);
+    })
+
+
+
+    return {
+      tableData,
+      search,
+      handleEdit,
+      handleDelete,
+      filterTableData
+
+    }
+  }
 
 }
 </script>

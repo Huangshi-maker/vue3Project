@@ -56,8 +56,9 @@ export default {
 
         if (res.meta.status == 200) {
 
-
+          console.log(res.user);
           store.commit('setUserinfo',res.user)
+          localStorage.setItem("loginData", JSON.stringify( res.user))
 
           router.push('/index')
 

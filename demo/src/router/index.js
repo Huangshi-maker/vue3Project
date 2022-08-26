@@ -38,8 +38,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-
-  console.log("store", store.state.userInfo)
   const uInfo = store.state.userInfo
   if (!uInfo.username) {
     if (to.path === "/login") {

@@ -31,6 +31,8 @@ export default {
             router.push('/login')
         }
         const handleToPersonel = () => {
+            localStorage.removeItem("loginData")
+            store.commit("setUserInfo", {})
             router.push('/usercenter')
         }
         const store = useStore()
