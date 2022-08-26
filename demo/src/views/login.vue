@@ -32,13 +32,14 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { loginApi } from '../until/api.js'
+import store from '@/store/index.js';
 export default {
 
 
   setup() {
     const loginForm = ref({
-      username: 'admin',
-      password: '123456'
+      username: '',
+      password: '',
     })
     const router = useRouter()
     const ruleFormRef = ref(null)
@@ -48,9 +49,16 @@ export default {
       formEl.resetFields()
     }
     const handleLogin = (ruleFormRef) => {
-      loginApi(loginForm).then((data) => {
-        console.log(data);
-        if (data) {
+      loginApi(loginForm.value).then((res) => {
+        console.log(res);
+
+
+
+        if (res.meta.status == 200) {
+
+
+          store.commit('setUserinfo',res.user)
+
           router.push('/index')
 
         }

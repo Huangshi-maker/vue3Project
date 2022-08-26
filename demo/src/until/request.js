@@ -23,6 +23,7 @@ serive.interceptors.request.use(req => {
 serive.interceptors.response.use(res => {
     loadingObj.close()
     if (res.data) {
+
         return res.data
     }
 

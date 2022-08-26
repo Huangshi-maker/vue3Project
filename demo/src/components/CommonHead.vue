@@ -2,7 +2,7 @@
     <el-header >
         <p>管理系统</p>
         <div class="userInfo">
-            <span>欢迎你,黄诗</span>
+            <span>欢迎你,{{loginuser.name}}</span>
             <el-dropdown>
     <span class="el-dropdown-link">
       <img src="../assets/images/user.png" alt="">
@@ -21,6 +21,8 @@
 </template>L
 <script >
 import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useStore } from 'vuex';
 
 export default {
     setup() {
@@ -31,8 +33,18 @@ export default {
         const handleToPersonel = () => {
             router.push('/usercenter')
         }
+        const store = useStore()
 
-        return { handleLogout, handleToPersonel }
+        const loginuser = ref({
+            username: '',
+            password: '',
+            name: '',
+
+        })
+
+        loginuser.value = store.state.userInfo
+
+        return { handleLogout, handleToPersonel, loginuser }
     }
 
 

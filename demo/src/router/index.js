@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store/index.js'
+
 
 const routes = [
   {
@@ -18,8 +20,8 @@ const routes = [
       },
       {
         path: '/usercenter',
-        name:'usercenter',
-        component:()=>import('../views/pages/usercenter.vue')
+        name: 'usercenter',
+        component: () => import('../views/pages/usercenter.vue')
       }
 
     ]
@@ -33,6 +35,25 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+
+  console.log("store", store.state.userInfo)
+  const uInfo = store.state.userInfo
+  if (!uInfo.username) {
+    if (to.path === "/login") {
+      next()
+      return
+    }
+    next("/login")
+  }
+  else {
+    next()
+  }
+
+  //判断用户是否登录
+
 })
 
 export default router

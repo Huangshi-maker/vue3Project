@@ -17,6 +17,14 @@ export default {
         // const { proxy } = getCurrentInstance();
         const content = ref()
 
+        const data = ref({
+            month: [],
+            entrynums: [],
+            exitnums: []
+
+
+        })
+
 
 
 
@@ -62,14 +70,14 @@ export default {
                         type: 'line',
                         stack: 'Total',
                         smooth: 'true',
-                        data: [2, 5, 7, 3, 8, 9, 10, 12, 15, 6, 3, 9, 14, 17]
+                        data: [2, 5, 7, 3, 8, 9, 10, 12, 15, 6, 3, 9]
                     },
                     {
                         name: '入境',
                         type: 'line',
                         stack: 'Total',
                         smooth: 'true',
-                        data: [12, 15, 6, 3, 9, 14, 17, 8, 5, 7, 3, 8, 9]
+                        data: [12, 15, 6, 3, 9, 14, 17, 8, 5, 7, 3, 8]
                     },
                 ]
             };
@@ -79,12 +87,7 @@ export default {
         }
 
         getcomeinData().then(res => {
-            console.log(res.data);
-            let month = res.data.map((item) => {
-
-                return item.month
-            })
-            console.log(month);
+            // console.log(res.data);
 
         })
 

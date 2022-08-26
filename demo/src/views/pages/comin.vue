@@ -50,7 +50,7 @@ export default {
             )
         )
         getcomeinData().then(res => {
-            if (res.status === 200) {
+            if (res.meta.status === 200) {
                 ElMessage({
                     message: '数据获取成功',
                     type: 'success',
