@@ -1,13 +1,15 @@
 <template lang="">
     <div ref="content" style="width: 100%; height: 100%; ">
+    <!-- {{data.month}} -->
 
     </div>
 </template>
 <script>
-import { onMounted, reactive, ref, toRefs } from 'vue'
+import { onMounted, reactive, ref, } from 'vue'
 
 import * as echarts from "echarts";
 import { getcomeinData } from '@/until/api'
+
 
 
 
@@ -20,7 +22,7 @@ export default {
         // const { proxy } = getCurrentInstance();
         const content = ref()
 
-        const data = ref({
+        const data = reactive({
             month: [],
             entrynums: [],
             exitnums: []
@@ -34,9 +36,23 @@ export default {
         })
 
         const getdata = () => {
+            getcomeinData().then(res => {
+                res.data.forEach(item => {
+                    data.month.push(item.month)
+                    data.entrynums.push(item.entrynums)
+                    data.exitnums.push(item.exitnums)
+                })
+
+
+                // console.log(data.month);
+
+                //必须先获取数据，才能实例化图
+                echartsDom.setOption(option1)
+
+            })
             var echartsDom = echarts.init(content.value)
             // var echartsDom = echarts.init(proxy.$refs.content)
-            const option1 = {
+            var option1 = {
 
                 tooltip: {
                     trigger: 'axis'
@@ -70,33 +86,27 @@ export default {
                     {
                         name: '出境',
                         type: 'line',
-                        stack: 'Total',
+
                         smooth: 'true',
-                        data: [2, 5, 7, 3, 8, 9, 10, 12, 15, 6, 3, 9]
+                        data: data.entrynums
                     },
                     {
                         name: '入境',
                         type: 'line',
-                        stack: 'Total',
+
                         smooth: 'true',
-                        data: [12, 15, 6, 3, 9, 14, 17, 8, 5, 7, 3, 8]
+                        data: data.exitnums
                     },
                 ]
             };
 
-            echartsDom.setOption(option1)
-
         }
 
-        getcomeinData().then(res => {
-            data.value.month = res.data
 
-            res.data.map(item => {
-                return data.value.month.push(item.month)
-            })
 
-        })
-        console.log(data.value.month);
+
+
+
 
 
 

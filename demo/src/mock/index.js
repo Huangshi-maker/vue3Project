@@ -13,13 +13,13 @@ const { entryAndExitList } = Mock.mock({
         }
     ]
 })
-Mock.mock('/api/user', 'get', () => {
+Mock.mock('/getEntryAndExitData', 'get', () => {
     return {
         meta: {
             msg: '登录成功',
             status: 200
         },
-        data: Array.from(entryAndExitList),
+        data: entryAndExitList,
         total: entryAndExitList.length
 
     }
@@ -95,3 +95,62 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
         }
     }
 })
+
+
+
+//出入境人数数据
+const { stratifiedManagementList } = Mock.mock({
+    'stratifiedManagementList': [
+        {
+            id: 0,
+            level: '1-4层',
+            'nums|500-800': 1
+        },
+        {
+            id: 1,
+            level: '5-8层',
+            'nums|500-800': 1
+        },
+        {
+            id: 2,
+            level: '9-12层',
+            'nums|500-800': 1
+        },
+        {
+            id: 3,
+            level: '13-18层',
+            'nums|500-800': 1
+        }
+    ]
+})
+Mock.mock('/stratifiedManagementData', 'get', () => {
+
+    return {
+        meta: {
+            msg: '获取数据成功',
+            status: 200
+        },
+        data: stratifiedManagementList,
+        total: stratifiedManagementList.length
+
+    }
+})
+
+Mock.mock('/editManData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    for (let i = 0; i < stratifiedManagementList.length; i++) {
+
+        if (stratifiedManagementList[i].id == params._value.id) {
+            stratifiedManagementList[i].nums = params._value.nums
+        }
+        else {
+        }
+
+    }
+    return {
+        code: 200,
+        success: true,
+        message: '数据修改成功'
+    }
+})
+

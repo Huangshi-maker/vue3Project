@@ -5,7 +5,7 @@
                     <el-card >
                         <div class="headata">
                             <div style="background-color:#3cdb86">
-                                <p>地府人数</p>
+                                <p>总人数</p>
                                 <span>1986</span>
                             </div>
                             <div style="background-color:#4480f4">

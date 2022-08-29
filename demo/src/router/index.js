@@ -19,6 +19,11 @@ const routes = [
         component: () => import('../views/pages/comin.vue')
       },
       {
+        path:'/stratifiedManagement',
+        name:'stratifiedManagement',
+        component:()=>import('../views/pages/stratifiedManagement.vue')
+      },
+      {
         path: '/usercenter',
         name: 'usercenter',
         component: () => import('../views/pages/usercenter.vue')

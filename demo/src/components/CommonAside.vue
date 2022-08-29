@@ -28,7 +28,7 @@
             <el-menu-item index="/comin"  >入境管理</el-menu-item>
 
 
-            <el-menu-item index="4" >分层管理</el-menu-item>
+            <el-menu-item index="/stratifiedManagement" >分层管理</el-menu-item>
 
         </el-sub-menu>
 

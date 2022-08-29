@@ -23,10 +23,10 @@
     </el-table-column>
   </el-table>
 
-  <el-dialog v-model="dialogFormVisible" title="编辑">
-    <el-form :model="form" ref="userform">
-      <el-form-item label="月份" prop="month" >
-        <el-input v-model="form.month" autocomplete="off" />
+  <el-dialog v-model="dialogFormVisible" title="编辑" >
+    <el-form class="dialog" :model="form" ref="userform" >
+      <el-form-item label="月份" prop="month" label-width="67px">
+        <el-input v-model="form.month" autocomplete="off" disabled="true" />
       </el-form-item>
       <el-form-item label="入境人数" prop="entrynums">
         <el-input v-model="form.entrynums" autocomplete="off" />
@@ -117,6 +117,20 @@ export default {
 
 }
 </script>
-<style lang="">
+<style lang="less" scoped>
+/deep/ .el-dialog {
+  width: 30%;
 
+  .el-dialog__body {
+    display: flex;
+    justify-content: center;
+
+
+    .dialog {
+      width: 50%;
+    }
+  }
+
+
+}
 </style>
