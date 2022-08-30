@@ -19,9 +19,9 @@ const routes = [
         component: () => import('../views/pages/comin.vue')
       },
       {
-        path:'/stratifiedManagement',
-        name:'stratifiedManagement',
-        component:()=>import('../views/pages/stratifiedManagement.vue')
+        path: '/stratifiedManagement',
+        name: 'stratifiedManagement',
+        component: () => import('../views/pages/stratifiedManagement.vue')
       },
       {
         path: '/usercenter',
@@ -42,8 +42,9 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
 
+//判断用户是否登录，如果未登录，则不能通过改变url来切换页面
+router.beforeEach((to, from, next) => {
   const uInfo = store.state.userInfo
   if (uInfo.username) {
     next()
@@ -56,9 +57,6 @@ router.beforeEach((to, from, next) => {
     next("/login")
 
   }
-
-  //判断用户是否登录
-
 })
 
 export default router

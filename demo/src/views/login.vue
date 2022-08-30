@@ -22,7 +22,7 @@
 
     <el-form-item>
       <el-button type="primary" @click="handleLogin(ruleFormRef)"
-        >登陆</el-button
+        >登录</el-button
       >
       <el-button @click="handleregister">注册</el-button>
       <el-button @click="resetForm(ruleFormRef)">重置</el-button>
@@ -80,7 +80,7 @@ export default {
             if (res.code == 400) {
               ElMessage({
                 message: res.message,
-                type: 'error', 
+                type: 'error',
               })
             }
           })
@@ -156,7 +156,7 @@ export default {
       padding: 40px 30px;
       background-color: #c6e2ff;
 
-      /deep/ .el-form-item__content {
+      :deep(.el-form-item__content) {
         display: flex;
         justify-content: space-between;
       }

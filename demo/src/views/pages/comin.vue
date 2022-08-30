@@ -68,7 +68,7 @@ export default {
     })
     const dialogstate = ref(1)   // 0编辑，1新增
     const dialogFormVisible = ref(false)
-    
+
 
     const handleEdit = (row) => {
       dialogstate.value = 0
@@ -160,7 +160,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-/deep/ .el-dialog {
+:deep(.el-dialog) {
   width: 30%;
 
   .el-dialog__body {

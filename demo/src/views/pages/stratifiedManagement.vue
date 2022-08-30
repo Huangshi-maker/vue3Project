@@ -98,7 +98,7 @@ export default {
     const getdata = () => {
 
       getstratifiedManagementData().then(res => {
-        
+
         if (res.meta.status === 200) {
           ElMessage({
             message: '数据获取成功',
@@ -154,7 +154,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-/deep/ .el-dialog {
+:deep(.el-dialog) {
   width: 30%;
 
   .el-dialog__body {
@@ -172,7 +172,7 @@ export default {
 
 }
 
-/deep/ .el-input--small {
+:deep(.el-input--small) {
   padding-left: 140px;
 }
 </style>

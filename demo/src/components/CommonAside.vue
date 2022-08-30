@@ -81,7 +81,7 @@ export default {
     }
 
 
-    ::v-deep .el-sub-menu__title:hover {
+    :deep(.el-sub-menu__title:hover) {
       background-color: skyblue;
     }
   }

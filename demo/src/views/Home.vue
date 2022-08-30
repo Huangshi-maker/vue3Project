@@ -53,7 +53,7 @@ export default {
 
         }
 
-        ::v-deep .el-menu {
+        :deep(.el-menu) {
             border-right: none;
         }
 
