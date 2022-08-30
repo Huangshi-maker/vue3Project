@@ -98,7 +98,7 @@ export default {
     const getdata = () => {
 
       getstratifiedManagementData().then(res => {
-        console.log(res);
+        
         if (res.meta.status === 200) {
           ElMessage({
             message: '数据获取成功',

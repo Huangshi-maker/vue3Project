@@ -68,7 +68,7 @@ export default {
     })
     const dialogstate = ref(1)   // 0编辑，1新增
     const dialogFormVisible = ref(false)
-    console.log((dialogstate.value == 0 ? 'true' : 'false'))
+    
 
     const handleEdit = (row) => {
       dialogstate.value = 0

@@ -27,7 +27,7 @@ Mock.mock('/getEntryAndExitData', 'get', () => {
 
 Mock.mock('/editComminData', 'post', (options) => {
     const params = JSON.parse(options.body)
-    console.log(params);
+    // console.log(params);
     for (let i = 0; i < entryAndExitList.length; i++) {
 
         if (entryAndExitList[i].id == params._value.id) {
@@ -47,7 +47,7 @@ Mock.mock('/editComminData', 'post', (options) => {
 })
 Mock.mock('/deleteComminData', 'post', (options) => {
     const params = JSON.parse(options.body)
-    console.log(params);
+    // console.log(params);
     const deleteIndex = entryAndExitList.findIndex((item) => {
         return item.id === params.id
     })
@@ -143,6 +143,27 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
     }
 })
 
+Mock.mock('/addUser', 'post', (options) => {
+    const params = JSON.parse(options.body)
+
+
+    for (let i = 0; i < userList.data.userinfo.length; i++) {
+        if (userList.data.userinfo[i].username == params.username) {
+            return {
+                code: 400,
+                success: false,
+                message: '当前用户已存在'
+            }
+        }
+    }
+    userList.data.userinfo.push(params)
+    return {
+        code: 200,
+        success: true,
+        message: '注册成功！快去登录吧'
+    }
+})
+
 
 
 //分层管理数据
@@ -170,6 +191,8 @@ const { stratifiedManagementList } = Mock.mock({
         }
     ]
 })
+
+
 Mock.mock('/stratifiedManagementData', 'get', () => {
 
     return {
@@ -190,7 +213,7 @@ Mock.mock('/editManData', 'post', (options) => {
 
         if (stratifiedManagementList[i].id == params._value.id) {
             stratifiedManagementList[i].nums = params._value.nums
-            console.log(stratifiedManagementList[i]);
+            // console.log(stratifiedManagementList[i]);
         }
         else {
         }
@@ -206,7 +229,7 @@ Mock.mock('/editManData', 'post', (options) => {
 
 Mock.mock('/deleteManData', 'post', (options) => {
     const params = JSON.parse(options.body)
-    console.log(params);
+    // console.log(params);
     const deleteIndex = stratifiedManagementList.findIndex((item) => {
         return item.id === params.id
     })
@@ -220,7 +243,7 @@ Mock.mock('/deleteManData', 'post', (options) => {
 })
 Mock.mock('/addManData', 'post', (options) => {
     const params = JSON.parse(options.body)
-    console.log(params);
+    // console.log(params);
     stratifiedManagementList.unshift(
         params._value
     )

@@ -9,6 +9,9 @@ import request from "./request";
 export const loginApi = (data) => {
     return request('/login', 'post', data)
 }
+export const addUser = (data) => {
+    return request('/addUser', 'post', data)
+}
 export const getHeadData = () => {
     return request('/GetHeadData', 'get')
 }
@@ -41,6 +44,7 @@ export const deleteComminData = (data) => {
 export const addComminData = (data) => {
     return request('/addComminData', 'post', data)
 }
+
 
 
 

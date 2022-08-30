@@ -164,14 +164,14 @@ export default {
         })
         const getdata = () => {
             getHeadData().then(res => {
-                console.log(res);
+
                 if (res.meta.status == 200) {
                     console.log('asda')
                     data.totalPeople = res.data.totalPeople
                     data.intoTheCountryToday = res.data.intoTheCountryToday
                     data.outboundToday = res.data.outboundToday
                     data.administrator = res.data.administrator
-                    console.log('asda')
+                    
                 }
             })
         }
