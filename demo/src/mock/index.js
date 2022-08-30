@@ -5,8 +5,8 @@ import Mock from 'mockjs'
 const { entryAndExitList } = Mock.mock({
     'entryAndExitList|12': [
         {
-            // id: '@increment()',
-            month: '@increment()月',
+            'id|+1': 1,
+            'month': '@increment()月',
             'entrynums|0-200': 1,
             'exitnums|0-200': 1,
 
@@ -25,8 +25,55 @@ Mock.mock('/getEntryAndExitData', 'get', () => {
     }
 })
 
+Mock.mock('/editComminData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    console.log(params);
+    for (let i = 0; i < entryAndExitList.length; i++) {
 
-const userList = {  //定义用户数据
+        if (entryAndExitList[i].id == params._value.id) {
+            entryAndExitList[i].entrynums = params._value.entrynums
+            entryAndExitList[i].exitnums = params._value.exitnums
+            console.log(entryAndExitList[i]);
+        }
+        else {
+        }
+
+    }
+    return {
+        code: 200,
+        success: true,
+        message: '数据修改成功'
+    }
+})
+Mock.mock('/deleteComminData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    console.log(params);
+    const deleteIndex = entryAndExitList.findIndex((item) => {
+        return item.id === params.id
+    })
+    entryAndExitList.splice(deleteIndex, 1)
+
+    return {
+        code: 200,
+        success: true,
+        message: '数据删除成功'
+    }
+})
+Mock.mock('/addComminData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    entryAndExitList.unshift(
+        params._value
+    )
+    return {
+        code: 200,
+        success: true,
+        message: '数据添加成功'
+    }
+})
+
+
+//定义用户数据
+const userList = {
     data: {
         total: 6,
         //前两个用户数据分别固定设为管理员和普通用户，为后续权限设置做准备，其他用户随机生成
@@ -38,7 +85,7 @@ const userList = {  //定义用户数据
             age: 22,
             job: '前端工程师',
             token: '000111222333444555666',
-            id: '100',
+            id: '200',
         }, {
             username: 'editor',
             password: '123456',
@@ -47,7 +94,7 @@ const userList = {  //定义用户数据
             'age|20-30': 23,
             job: '前端工程师',
             token: '145145145123123123111',
-            id: '101',
+            id: '201',
         }, {
             username: '@word(3, 5)',
             password: '123456',
@@ -56,7 +103,7 @@ const userList = {  //定义用户数据
             'age|20-30': 23,
             'job|1': ['前端工程师', '后端工程师', 'UI工程师', '需求工程师'],
             token: '@guid()',
-            id: '102',
+            id: '202',
         },],
         meta: {
             status: 200,
@@ -98,18 +145,18 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
 
 
 
-//出入境人数数据
+//分层管理数据
 const { stratifiedManagementList } = Mock.mock({
     'stratifiedManagementList': [
         {
             id: 0,
             level: '1-4层',
-            'nums|500-800': 1
+            'nums|500-1000': 1
         },
         {
             id: 1,
             level: '5-8层',
-            'nums|500-800': 1
+            'nums|500-1000': 1
         },
         {
             id: 2,
@@ -119,7 +166,7 @@ const { stratifiedManagementList } = Mock.mock({
         {
             id: 3,
             level: '13-18层',
-            'nums|500-800': 1
+            'nums|500-1000': 1
         }
     ]
 })
@@ -136,12 +183,14 @@ Mock.mock('/stratifiedManagementData', 'get', () => {
     }
 })
 
+
 Mock.mock('/editManData', 'post', (options) => {
     const params = JSON.parse(options.body)
     for (let i = 0; i < stratifiedManagementList.length; i++) {
 
         if (stratifiedManagementList[i].id == params._value.id) {
             stratifiedManagementList[i].nums = params._value.nums
+            console.log(stratifiedManagementList[i]);
         }
         else {
         }
@@ -152,5 +201,63 @@ Mock.mock('/editManData', 'post', (options) => {
         success: true,
         message: '数据修改成功'
     }
+
 })
+
+Mock.mock('/deleteManData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    console.log(params);
+    const deleteIndex = stratifiedManagementList.findIndex((item) => {
+        return item.id === params.id
+    })
+    stratifiedManagementList.splice(deleteIndex, 1)
+
+    return {
+        code: 200,
+        success: true,
+        message: '数据删除成功'
+    }
+})
+Mock.mock('/addManData', 'post', (options) => {
+    const params = JSON.parse(options.body)
+    console.log(params);
+    stratifiedManagementList.unshift(
+        params._value
+    )
+    return {
+        code: 200,
+        success: true,
+        message: '数据添加成功'
+    }
+})
+
+
+
+//分层管理数据
+const { HeadDataList } = Mock.mock({
+    'HeadDataList':
+    {
+        'totalPeople|2000-8000': 1,
+        'intoTheCountryToday|0-1000': 1,
+        'outboundToday|0-1000': 1,
+        'administrator': 100
+
+    }
+
+})
+Mock.mock('/GetHeadData', 'get', () => {
+
+    return {
+        meta: {
+            msg: '获取数据成功',
+            status: 200
+        },
+        data: HeadDataList,
+        total: HeadDataList.length
+
+    }
+})
+
+
+
 

@@ -5,7 +5,6 @@
         :router="true"
         class="el-menu-vertical-demo"
         :default-active="route.path"
-
         style="background-color:#545c64;"
       >
 
@@ -19,7 +18,7 @@
           <span>操作日志</span>
         </el-menu-item>
 
-        <el-sub-menu index="">
+        <el-sub-menu index="/">
           <template #title>
             <el-icon><location /></el-icon>
             <span>数据管理</span>

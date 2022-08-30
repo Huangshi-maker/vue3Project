@@ -6,19 +6,23 @@
                         <div class="headata">
                             <div style="background-color:#3cdb86">
                                 <p>总人数</p>
-                                <span>1986</span>
+                                <span v-if="!data" style="display:block;height:31px;width:30px"></span>
+                                <span>{{data.totalPeople}}</span>
                             </div>
                             <div style="background-color:#4480f4">
                                 <p>今日入境</p>
-                                <span>10</span>
+                                <span v-if="!data">&nbsp;</span>
+                                <span>{{data.intoTheCountryToday}}</span>
                             </div>
                             <div style="background-color:#083045">
                                 <p>今日出境</p>
-                                <span>16</span>
+                                <span v-if="!data">&nbsp;</span>
+                                <span>{{data.outboundToday}}</span>
                             </div>
                             <div style="background-color:#f66932">
                                 <p>管理员</p>
-                                <span>100</span>
+                                <span v-if="!data">&nbsp;</span>
+                                <span>{{data.administrator}}</span>
                             </div>
                         </div>
 
@@ -135,6 +139,11 @@
 <script>
 import mousecharts from '../../components/echarts/mousechart.vue'
 import fanChart from '@/components/echarts/fan-chart'
+import { getHeadData } from '@/until/api'
+import { reactive } from '@vue/reactivity'
+
+
+
 
 
 export default {
@@ -144,6 +153,34 @@ export default {
         fanChart
 
     },
+    setup() {
+
+        const data = reactive({
+            totalPeople: null,
+            intoTheCountryToday: null,
+            outboundToday: null,
+            administrator: null
+
+        })
+        const getdata = () => {
+            getHeadData().then(res => {
+                console.log(res);
+                if (res.meta.status == 200) {
+                    console.log('asda')
+                    data.totalPeople = res.data.totalPeople
+                    data.intoTheCountryToday = res.data.intoTheCountryToday
+                    data.outboundToday = res.data.outboundToday
+                    data.administrator = res.data.administrator
+                    console.log('asda')
+                }
+            })
+        }
+        getdata()
+
+        return {
+            data
+        }
+    }
 
 
 }
@@ -156,6 +193,7 @@ export default {
     justify-content: space-between;
 
     div {
+        cursor: pointer;
         height: 150px;
         width: 20%;
         background-color: pink;
@@ -163,6 +201,7 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
 
         p {
             font-size: 16px;

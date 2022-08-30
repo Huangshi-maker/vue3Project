@@ -53,8 +53,9 @@ export default {
                             borderWidth: 2
                         },
                         label: {
-                            show: false,
-                            position: 'center'
+                            show: true,
+                            position: "inside", //outside 外部显示  inside 内部显示
+                            formatter: `{d}%`,
                         },
                         emphasis: {
                             label: {
