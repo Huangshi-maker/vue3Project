@@ -1,4 +1,6 @@
 # demo
+项目演示地址http://101.200.90.16:82
+账号admin 密码123456
 
 ## Project setup
 ```
