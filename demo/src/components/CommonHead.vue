@@ -2,7 +2,7 @@
     <el-header >
         <p>管理系统</p>
         <div class="userInfo">
-            <span>欢迎你,{{loginuser.name}}</span>
+            <span v-if="loginuser.name">欢迎您，{{loginuser.name}}</span>
             <el-dropdown>
     <span class="el-dropdown-link">
       <img src="../assets/images/user.png" alt="">

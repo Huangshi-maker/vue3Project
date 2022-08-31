@@ -141,6 +141,8 @@ import mousecharts from '../../components/echarts/mousechart.vue'
 import fanChart from '@/components/echarts/fan-chart'
 import { getHeadData } from '@/until/api'
 import { reactive } from '@vue/reactivity'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 
 
@@ -154,6 +156,9 @@ export default {
 
     },
     setup() {
+
+        const store = useStore()
+        const router = useRouter()
 
         const data = reactive({
             totalPeople: null,
@@ -171,16 +176,33 @@ export default {
                     data.intoTheCountryToday = res.data.intoTheCountryToday
                     data.outboundToday = res.data.outboundToday
                     data.administrator = res.data.administrator
-                    
+
                 }
             })
         }
         getdata()
+        const gotouserinfo = () => {
+            if (!store.state.userInfo.name) {
+                ElMessageBox.alert('当前个人信息不完整，快去完善吧', '消息提示', {
+
+                    confirmButtonText: 'OK',
+                    callback: () => {
+                        router.push('./usercenter')
+                    },
+                })
+            }
+        }
+        gotouserinfo()
 
         return {
             data
         }
+
+
+
+
     }
+
 
 
 }

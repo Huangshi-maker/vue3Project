@@ -90,12 +90,12 @@ const userList = {
             username: 'editor',
             password: '123456',
             roles: 'editor',
-            name: '测试1',
+            name: '测试张',
             'age|20-30': 23,
             job: '前端工程师',
             token: '145145145123123123111',
             id: '201',
-        }, {
+        }, Mock.mock({
             username: '@word(3, 5)',
             password: '123456',
             roles: 'editor',
@@ -104,7 +104,7 @@ const userList = {
             'job|1': ['前端工程师', '后端工程师', 'UI工程师', '需求工程师'],
             token: '@guid()',
             id: '202',
-        },],
+        }),],
         meta: {
             status: 200,
             message: 'success',
@@ -113,6 +113,7 @@ const userList = {
 };
 
 Mock.mock('/login', 'post', req => { //路径与请求方式
+    console.log(userList.data.userinfo);
     const { username, password } = JSON.parse(req.body); //将传递进来的数据保存
     for (let i = 0; i < userList.data.userinfo.length; i++) {
         //判断userList中是否存在该用户并且用户密码是否正确
@@ -145,6 +146,15 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
 
 Mock.mock('/addUser', 'post', (options) => {
     const params = JSON.parse(options.body)
+    // params.id = Mock.mock({ 'id|+1': 205 })
+    const { adduserinfo } = Mock.mock({
+        adduserinfo: {
+            'id|0-10000': 1,
+            token: '@guid()',
+        }
+    })
+    params.id = adduserinfo.id;
+    params.token = adduserinfo.token
 
 
     for (let i = 0; i < userList.data.userinfo.length; i++) {
