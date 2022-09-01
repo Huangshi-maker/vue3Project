@@ -19,9 +19,9 @@
         </div>
 </el-header>
 </template>L
-<script >
+<script>
 import { useRouter } from 'vue-router';
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex';
 
 export default {
@@ -38,15 +38,9 @@ export default {
         }
         const store = useStore()
 
-        const loginuser = ref({
-            username: '',
-            password: '',
-            name: '',
-
+        const loginuser = computed(() => {
+            return store.state.userInfo
         })
-
-        loginuser.value = store.state.userInfo
-
         return { handleLogout, handleToPersonel, loginuser }
     }
 

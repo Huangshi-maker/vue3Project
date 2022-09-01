@@ -48,6 +48,11 @@ export const addComminData = (data) => {
 }
 
 
+export const editUser = (data) => {
+    return request('/editUser', 'post', data)
+}
+
+
 
 
 

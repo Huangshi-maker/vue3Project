@@ -6,27 +6,23 @@
       <el-input v-model="form.name" style="width:215px" />
     </el-form-item>
     <el-form-item label="所属职位">
-      <el-select v-model="form.jobType" placeholder="请选择你的职位类型">
-        <el-option label="前端工程师" value="job1" />
-        <el-option label="后端工程师" value="job2" />
-        <el-option label="UI工程师" value="job3" />
-        <el-option label="需求工程师" value="job4" />
+      <el-select v-model="form.jobType"  placeholder="请选择你的职位类型">
+        <el-option selected label="前端工程师" value="前端工程师" />
+        <el-option label="后端工程师" value="后端工程师" />
+        <el-option label="UI工程师" value="UI工程师" />
+        <el-option label="需求工程师" value="需求工程师" />
       </el-select>
     </el-form-item>
 
-    <el-form-item label="当前角色">
-      <el-select v-model="form.roles" placeholder="请选择你的角色类型">
-        <el-option label="admin" value="roles1" />
-        <el-option label="editor" value="roles2" />
-        <el-option label="user" value="roles3" />
+    <el-form-item label="当前角色" >
+      <el-select v-model="form.roles"  placeholder="请选择你的角色类型">
+        <el-option label="admin" value="admin" />
+        <el-option label="editor" value="editor" />
+        <el-option label="user" value="user" />
       </el-select>
-    </el-form-item>
-
-    <el-form-item label="账号当前状态">
-      <el-switch v-model="form.userState" />
     </el-form-item>
     <el-form-item label="性别">
-      <el-radio-group v-model="form.userSex">
+      <el-radio-group v-model="form.usersex">
         <el-radio label="男" />
         <el-radio label="女" />
       </el-radio-group>
@@ -56,30 +52,34 @@
     </div>
 </template>
 <script>
+
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { editUser } from '@/until/api'
+
 
 export default {
-
   setup() {
     const form = ref({
+      username: '',
       name: '',
       jobType: '',
       roles: '',
-      userState: '',
-      userSex: '',
+      usersex: '',
       userDesc: '',
     })
+    let value = '前端工程师'
     const store = useStore()
 
     const getuserinfo = () => {
-      console.log("asdasd")
-      form.jobType = store.state.userInfo.job
-      console.log(form.jobType);
-
+      form.value.username = store.state.userInfo.username
+      form.value.jobType = store.state.userInfo.job
+      form.value.name = store.state.userInfo.name
+      form.value.roles = store.state.userInfo.roles
+      form.value.usersex = (store.state.userInfo.usersex == 1 ? '男' : '女')
+      form.value.userDesc = store.state.userInfo.desc
     }
     getuserinfo()
-
 
 
     const imageUrl = ref('')
@@ -100,12 +100,21 @@ export default {
       return isJPG && isLt2M;
     }
 
+    const onSubmit = () => {
+      editUser(form.value).then(res => {
+        store.commit('setUserinfo', res.data)
+        console.log(store.state.userInfo);
+      })
+    }
+
 
     return {
       form,
       imageUrl,
       handleAvatarSuccess,
       beforeAvatarUpload
+      , value,
+      onSubmit
     }
 
   }

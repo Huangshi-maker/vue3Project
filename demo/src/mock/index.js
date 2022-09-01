@@ -1,4 +1,5 @@
 import Mock from 'mockjs'
+import { useStore } from 'vuex'
 
 
 //出入境人数数据
@@ -84,6 +85,8 @@ const userList = {
             name: '黄诗',
             age: 22,
             job: '前端工程师',
+            usersex: 1,
+            desc: '性格好，学习厉害',
             token: '000111222333444555666',
             id: '200',
         }, {
@@ -93,6 +96,8 @@ const userList = {
             name: '测试张',
             'age|20-30': 23,
             job: '前端工程师',
+            usersex: 0,
+            desc: '前端工程师张，个性好',
             token: '145145145123123123111',
             id: '201',
         }, Mock.mock({
@@ -101,7 +106,9 @@ const userList = {
             roles: 'editor',
             name: '@cname',
             'age|20-30': 23,
+            'usersex|0-1': 1,
             'job|1': ['前端工程师', '后端工程师', 'UI工程师', '需求工程师'],
+            desc: '@csentence',
             token: '@guid()',
             id: '202',
         }),],
@@ -129,10 +136,20 @@ Mock.mock('/login', 'post', req => { //路径与请求方式
                     password: userList.data.userinfo[i].password,
                     name: userList.data.userinfo[i].name,
                     age: userList.data.userinfo[i].age,
+                    usersex: userList.data.userinfo[i].usersex,
                     job: userList.data.userinfo[i].job,
                     token: userList.data.userinfo[i].token,
                     id: userList.data.userinfo[i].id,
+                    desc: userList.data.userinfo[i].desc,
                 }
+            }
+        }
+        else {
+            return {
+                meta: {
+                    msg: '当前用户不存在，请注册',
+                    status: 401
+                },
             }
         }
     }
@@ -174,6 +191,33 @@ Mock.mock('/addUser', 'post', (options) => {
     }
 })
 
+Mock.mock('/editUser', 'post', (options) => {
+
+    const params = JSON.parse(options.body)
+    console.log(params);
+    for (let i = 0; i < userList.data.userinfo.length; i++) {
+        if (userList.data.userinfo[i].username == params.username) {
+
+            userList.data.userinfo[i].name = params.name
+            userList.data.userinfo[i].job = params.jobType
+            userList.data.userinfo[i].roles = params.roles
+            userList.data.userinfo[i].desc = params.userDesc
+            userList.data.userinfo[i].usersex = (params.usersex == '男' ? 1 : 0)
+            return {
+                data: userList.data.userinfo[i],
+                code: 200,
+                success: true,
+                message: '修改信息成功'
+            }
+        }
+    }
+
+    return {
+        code: 401,
+        success: false,
+        message: '失败'
+    }
+})
 
 
 //分层管理数据

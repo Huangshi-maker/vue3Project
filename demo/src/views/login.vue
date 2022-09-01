@@ -53,15 +53,30 @@ export default {
         return
       formEl.resetFields()
     }
-    const handleLogin = (ruleFormRef) => {
-      loginApi(loginForm.value).then((res) => {
-        if (res.meta.status == 200) {
-          store.commit('setUserinfo', res.data)
-          localStorage.setItem("loginData", JSON.stringify(res.data))
-          router.push('/index')
-        }
-        else {
+    const handleLogin = () => {
+      ruleFormRef.value.validate((valid) => {
+        if (valid) {
+          loginApi(loginForm.value).then((res) => {
+            if (res.meta.status == 200) {
+              store.commit('setUserinfo', res.data)
+              localStorage.setItem("loginData", JSON.stringify(res.data))
+              router.push('/index')
+            }
+            else {
+              ElMessage({
+                message: res.meta.msg,
+                type: 'error',
+              })
 
+            }
+          })
+        }
+        else{
+          ElMessage({
+            message: '输入不符合要求，请重新输入',
+            type: 'error',
+          })
+          return false;
         }
       })
 
@@ -95,7 +110,7 @@ export default {
     }
 
 
-    
+
 
 
 
