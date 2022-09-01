@@ -120,44 +120,45 @@ const userList = {
 };
 
 Mock.mock('/login', 'post', req => { //路径与请求方式
-    console.log(userList.data.userinfo);
     const { username, password } = JSON.parse(req.body); //将传递进来的数据保存
     for (let i = 0; i < userList.data.userinfo.length; i++) {
         //判断userList中是否存在该用户并且用户密码是否正确
-        if (username === userList.data.userinfo[i].username && password === userList.data.userinfo[i].password) {
-            return {
-                meta: {
-                    msg: '登录成功',
-                    status: 200
-                },
-                data: {
-                    username: userList.data.userinfo[i].username,
-                    roles: userList.data.userinfo[i].roles,
-                    password: userList.data.userinfo[i].password,
-                    name: userList.data.userinfo[i].name,
-                    age: userList.data.userinfo[i].age,
-                    usersex: userList.data.userinfo[i].usersex,
-                    job: userList.data.userinfo[i].job,
-                    token: userList.data.userinfo[i].token,
-                    id: userList.data.userinfo[i].id,
-                    desc: userList.data.userinfo[i].desc,
+        if (username == userList.data.userinfo[i].username) {
+            if (password == userList.data.userinfo[i].password) {
+                return {
+                    meta: {
+                        msg: '登录成功',
+                        status: 200
+                    },
+                    data: {
+                        username: userList.data.userinfo[i].username,
+                        roles: userList.data.userinfo[i].roles,
+                        password: userList.data.userinfo[i].password,
+                        name: userList.data.userinfo[i].name,
+                        age: userList.data.userinfo[i].age,
+                        usersex: userList.data.userinfo[i].usersex,
+                        job: userList.data.userinfo[i].job,
+                        token: userList.data.userinfo[i].token,
+                        id: userList.data.userinfo[i].id,
+                        desc: userList.data.userinfo[i].desc,
+                    }
                 }
             }
-        }
-        else {
             return {
                 meta: {
-                    msg: '当前用户不存在，请注册',
+                    msg: '密码错误',
                     status: 401
                 },
+
             }
         }
     }
     return {
         meta: {
-            msg: 'error',
-            status: 201
-        }
+            msg: '当前用户不存在，请注册',
+            status: 401
+        },
+
     }
 })
 

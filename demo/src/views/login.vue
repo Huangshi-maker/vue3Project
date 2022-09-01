@@ -61,6 +61,10 @@ export default {
               store.commit('setUserinfo', res.data)
               localStorage.setItem("loginData", JSON.stringify(res.data))
               router.push('/index')
+              ElMessage({
+                message: res.meta.msg,
+                type: 'success',
+              })
             }
             else {
               ElMessage({
@@ -71,7 +75,7 @@ export default {
             }
           })
         }
-        else{
+        else {
           ElMessage({
             message: '输入不符合要求，请重新输入',
             type: 'error',
