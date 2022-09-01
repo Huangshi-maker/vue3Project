@@ -13,9 +13,9 @@
           <span>首页</span>
         </el-menu-item>
 
-        <el-menu-item index="2" >
+        <el-menu-item index="/dataViewBoard" >
           <el-icon><setting /></el-icon>
-          <span>操作日志</span>
+          <span>gitHub数据看板</span>
         </el-menu-item>
 
         <el-sub-menu index="/">

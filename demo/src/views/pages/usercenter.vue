@@ -105,13 +105,13 @@ export default {
       })
     }
 
-
+      
     return {
       form,
       imageUrl,
       handleAvatarSuccess,
       beforeAvatarUpload
-      , value,
+      ,
       onSubmit
     }
 

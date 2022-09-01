@@ -127,6 +127,7 @@
                                 <el-icon class="card-icon"><MoreFilled /></el-icon>
                             </div>
                             <fanChart/>
+                            
                         </div>
 
                     </el-card>
@@ -152,7 +153,8 @@ export default {
     name: 'index',
     components: {
         mousecharts,
-        fanChart
+        fanChart,
+        dataview
 
     },
     setup() {

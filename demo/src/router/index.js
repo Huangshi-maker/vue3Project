@@ -27,13 +27,17 @@ const routes = [
         path: '/usercenter',
         name: 'usercenter',
         component: () => import('../views/pages/usercenter.vue')
-      }
-
+      },
     ]
   },
   {
     path: '/login',
     component: () => import('../views/login.vue')
+  },
+  {
+    path: '/dataViewBoard',
+    name: 'dataViewBoard',
+    component: () => import('../views/pages/dataViewBoard.vue')
   }
 ]
 
