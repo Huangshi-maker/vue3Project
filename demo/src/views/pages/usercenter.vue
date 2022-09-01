@@ -68,7 +68,6 @@ export default {
       usersex: '',
       userDesc: '',
     })
-    let value = '前端工程师'
     const store = useStore()
 
     const getuserinfo = () => {
@@ -103,7 +102,6 @@ export default {
     const onSubmit = () => {
       editUser(form.value).then(res => {
         store.commit('setUserinfo', res.data)
-        console.log(store.state.userInfo);
       })
     }
 

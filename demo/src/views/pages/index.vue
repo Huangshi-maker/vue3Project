@@ -171,7 +171,6 @@ export default {
             getHeadData().then(res => {
 
                 if (res.meta.status == 200) {
-                    console.log('asda')
                     data.totalPeople = res.data.totalPeople
                     data.intoTheCountryToday = res.data.intoTheCountryToday
                     data.outboundToday = res.data.outboundToday

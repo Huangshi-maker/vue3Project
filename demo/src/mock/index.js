@@ -195,7 +195,6 @@ Mock.mock('/addUser', 'post', (options) => {
 Mock.mock('/editUser', 'post', (options) => {
 
     const params = JSON.parse(options.body)
-    console.log(params);
     for (let i = 0; i < userList.data.userinfo.length; i++) {
         if (userList.data.userinfo[i].username == params.username) {
 
