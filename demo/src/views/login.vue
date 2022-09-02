@@ -150,11 +150,12 @@ export default {
 </script>
 <style lang="less" scoped>
 .loginContainer {
-
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 
   .box {
     width: 20%;
@@ -165,6 +166,7 @@ export default {
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    min-height: 190px;
 
 
 

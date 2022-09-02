@@ -12,7 +12,7 @@
                     <dv-border-box-12 class="left" style="height:100%">
                         <div class="userinfo" style="height:">
                             <div class="userimage">
-                                <img src="@/assets/images/user.png" alt="">
+                                <img src="@/assets/images/myimage.png" alt="">
                             </div>
                             <div class="usertext">
                                 <span>Huangshi-maker</span>
@@ -50,10 +50,10 @@
 
                         </div>
                         <div class="center-bottom">
-                            <dv-border-box-10>
+                            <dv-border-box-12>
                             <p>最近操作数据</p>
 
-                            </dv-border-box-10>
+                            </dv-border-box-12>
                         </div>
 
                     </div>

@@ -22,7 +22,14 @@ body {
 
 }
 
+@media (max-width: 1919px) and (min-width: 768px) {
+  html {
+    zoom: 80%;
+  }
+}
+
 #app {
-  height: 100vh;
+  height: 100%;
+  margin: 0 auto;
 }
 </style>
