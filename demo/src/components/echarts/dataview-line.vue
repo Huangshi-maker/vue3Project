@@ -5,15 +5,13 @@
 </template>
 <script>
 import * as echarts from 'echarts'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
 export default {
-    name: 'dataviewline',
+    name: 'dataview',
     props: {
         option: ''
     },
-
-
     setup(props) {
         onMounted(() => {
             getdata()
@@ -28,23 +26,11 @@ export default {
 
 
 
-
-
         return {
             dataviewfan,
             getdata
         }
 
-    },
-    watch: {
-        option(val, oldval) {
-
-            const getdata = () => {
-                var newfan = echarts.init(dataviewfan.value)
-                newfan.setOption(props.option)
-            }
-            console.log(val);
-        }
     }
 
 }
