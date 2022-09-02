@@ -67,7 +67,7 @@
                         <div class="center-center">
                             <p>仓库数据</p>
                             <div style="height:80%">
-                                <dataviewline :option="option2"/>
+                                <dataviewline  :option="option2"/>
                             </div>
 
 
@@ -197,7 +197,7 @@ export default {
 
         onMounted(() => {
 
-            getdata()
+
 
         })
         const getdata = () => {
@@ -245,17 +245,16 @@ export default {
                     Githubreposdata.reposForks.push(item.forks)
                 })
 
+                // option2.yAxis.data = Githubreposdata.reposName
+                // option2.xAxis.series[0].data = Githubreposdata.reposSize
+                // option2.xAxis.series[1].data = Githubreposdata.reposForks
+
             })
 
 
         }
-        computed(() => {
-            Githubreposdata.reposName.forEach(item => {
-                option2.yAxis.data.push(item)
-            })
-        })
 
-
+        getdata()
         var option1 = {
             tooltip: {
                 trigger: 'item'
@@ -287,7 +286,7 @@ export default {
                 }
             ]
         };
-        var option2 = {
+        const option2 = reactive({
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -329,10 +328,10 @@ export default {
                 {
                     name: 'forks',
                     type: 'bar',
-                    data: [3, 1]
+                    data: Githubreposdata.reposForks
                 }
             ]
-        };
+        });
         const tableData = [
             {
                 date: '2016-05-03',

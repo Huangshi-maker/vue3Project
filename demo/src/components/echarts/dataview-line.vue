@@ -4,8 +4,9 @@
     </div>
 </template>
 <script>
+
 import * as echarts from 'echarts'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 export default {
     name: 'dataview',
@@ -14,23 +15,20 @@ export default {
     },
     setup(props) {
         onMounted(() => {
-            getdata()
+            watch(
+                () => props.option, (newval, oldval) => {
+                    var newfan = echarts.init(dataviewfan.value)
+                    newfan.setOption(newval)
+                    console.log(newval);
+                },
+                { deep: true }
+            )
         })
-
-
         const dataviewfan = ref()
-        const getdata = () => {
-            var newfan = echarts.init(dataviewfan.value)
-            newfan.setOption(props.option)
-        }
-
-
-
         return {
             dataviewfan,
-            getdata
-        }
 
+        }
     }
 
 }
