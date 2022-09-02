@@ -159,34 +159,11 @@ export default {
             }, {
                 avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
                 login: 'huangshi'
-            }, {
+            },
+            {
                 avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
                 login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }, {
-                avatar_url: 'https://avatars.githubusercontent.com/u/77331529?v=4',
-                login: 'huangshi'
-            }]      //关注者列表
+            },]      //关注者列表
 
         })
         const Githubreposdata = reactive({
@@ -527,7 +504,7 @@ export default {
 .righttopmesbox {
     height: 45%;
     width: 100%;
-    border: 1px solid black;
+    // border: 1px solid black;
     padding: 0 20px;
 
     p {
@@ -540,7 +517,7 @@ export default {
         height: 90%;
         display: flex;
         flex-wrap: wrap;
-        align-content: space-around;
+        // align-content: space-around;
         flex-grow: 1;
         cursor: pointer;
 
@@ -551,6 +528,7 @@ export default {
             flex-direction: column;
             align-items: center;
             margin-right: 18px;
+            margin-top: 16px;
 
 
             img {
